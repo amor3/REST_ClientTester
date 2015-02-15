@@ -11,12 +11,12 @@ public class AuthClient {
 
     public static void main(String[] args) {
         authorizeUser("andre", "word");
-        
-        createUser("user3","pass3");
-        
-        updateUser("user3","pass4");
-        updateUser("DONTEXIST","pass4");
-        
+
+        createUser("user3", "pass3");
+
+        updateUser("user3", "pass4");
+        updateUser("DONTEXIST", "pass4");
+
         deleteUser("user3");
         deleteUser("DONTEXIST");
     }
@@ -35,7 +35,6 @@ public class AuthClient {
                 throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
             }
 
-            
             String output = response.getEntity(String.class);
 
             System.out.println("INPUT: " + "login/" + username + "/" + password);
@@ -68,13 +67,12 @@ public class AuthClient {
 
             System.out.println("CreateUser (POST): " + output + "\n");
 
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
-    
-    
+
     /* PUT */
     public static void updateUser(String username, String password) {
         try {
@@ -102,7 +100,6 @@ public class AuthClient {
         }
     }
 
-    
     /* DELETE */
     public static void deleteUser(String username) {
         try {
@@ -110,7 +107,6 @@ public class AuthClient {
             Client client = Client.create();
 
             WebResource webResource = client.resource("http://localhost:8080/REST_Authorization/webresources/auth/deleteuser/" + username);
-
 
             System.out.println("INPUT: " + "deleteuser/" + username);
 
@@ -121,13 +117,12 @@ public class AuthClient {
             }
 
             String output = response.getEntity(String.class);
-
+                        
             System.out.println("DeleteUser (DELETE): " + output + "\n");
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
 
 }
